@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import 'questao.dart';
+import 'resposta.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,17 +8,8 @@ void main() {
 
 class _MyAppState extends State<MyApp> {
   var _perguntaSelecionada = 0;
-
-  void _resposta() {
-    setState(() {
-      _perguntaSelecionada++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final perguntas = [
-      {
+  final _perguntas = const [
+    {
         'texto': 'Quais desses carros voce teria?',
         'resposta': [
           'Cayenne',
@@ -47,36 +38,56 @@ class _MyAppState extends State<MyApp> {
       },
     ];
 
-    List<Widget> ?resposta = [];
-
-    // ignore: unused_local_variable
-    for (String textoResp
-        in perguntas[_perguntaSelecionada]['resposta'] as List) {
-      resposta.add(Answer(textoResp, _resposta));
+  void _responder(){
+    if(temPerguntaSelecionada){
+      setState(() {
+        _perguntaSelecionada++;
+      });
     }
+  }
+
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> respostas = temPerguntaSelecionada ? _perguntas[_perguntaSelecionada]['resposta'] as List<String> : [];
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Perguntados'),
+          title: const Text("Perguntados"),
         ),
-        body: Column(
-          children: [
-            Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-            ...resposta,
-          ],
-        ),
+        body: temPerguntaSelecionada 
+          ? Column(
+            children: [
+                  Questao(_perguntas[_perguntaSelecionada]['texto'] as String),
+                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                ],
+              )
+            : const Center(
+              child: Text("So tenho 2 coisas pra dizer, PARA-BENS",
+                style: TextStyle(fontSize: 20),),
+              ),
       ),
     );
   }
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  class MyApp extends StatefulWidget {
+    const MyApp({super.key});
+  
+    @override
+    // ignore: library_private_types_in_public_api
+    _MyAppState createState(){
+      return _MyAppState();
+    }
+    
+  } 
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _MyAppState createState() {
-    return _MyAppState();
-  }
-}
+
+      
+
+
+    
