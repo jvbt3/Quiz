@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 // ignore: use_key_in_widget_constructors
 class Resultado extends StatelessWidget {
   final int pontuacao;
+  final void Function() reiniciarQuiz;
 
-  Resultado(this.pontuacao);
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+  Resultado(this.pontuacao, this.reiniciarQuiz);
 
   String get fraseResultado {
     if (pontuacao < 4 && pontuacao > 1) {
@@ -22,13 +24,18 @@ class Resultado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        fraseResultado,
-        style: const TextStyle(
-          fontSize: 20,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Text(
+            fraseResultado,
+            style: const TextStyle(
+              fontSize: 20,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

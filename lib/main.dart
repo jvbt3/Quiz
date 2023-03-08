@@ -51,8 +51,13 @@ class _MyAppState extends State<MyApp> {
         _pontuacaoTotal += pontuacao;
       });
     }
+  }
 
-    print(_pontuacaoTotal);
+  void _reiniciarQuiz() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -71,7 +76,7 @@ class _MyAppState extends State<MyApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 perguntas: _perguntas,
                 responder: _responder)
-            : Resultado(_pontuacaoTotal),
+            : Resultado(_pontuacaoTotal, _reiniciarQuiz),
       ),
     );
   }
