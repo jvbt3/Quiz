@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'questao.dart';
-import 'resposta.dart';
+import './Widgets/questao.dart';
+import './Widgets/resposta.dart';
+import './Widgets/resultado.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,7 @@ class _MyAppState extends State<MyApp> {
           'Dodge RAM',
         ],
       },
+        
     ];
 
   void _responder(){
@@ -66,10 +68,7 @@ class _MyAppState extends State<MyApp> {
                   ...respostas.map((t) => Resposta(t, _responder)).toList(),
                 ],
               )
-            : const Center(
-              child: Text("So tenho 2 coisas pra dizer, PARA-BENS",
-                style: TextStyle(fontSize: 20),),
-              ),
+            : Resultado(),
       ),
     );
   }
@@ -84,10 +83,4 @@ class _MyAppState extends State<MyApp> {
       return _MyAppState();
     }
     
-  } 
-
-
-      
-
-
-    
+  }
