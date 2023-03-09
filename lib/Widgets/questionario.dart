@@ -24,6 +24,7 @@ class Questionario extends StatelessWidget {
         ? perguntas[perguntaSelecionada]['resposta'] as List<Map<String, Object>>
         : [];
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Questao(perguntas[perguntaSelecionada]['texto'] as String),
         ...respostas.map((resp) {

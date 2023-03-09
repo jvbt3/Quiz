@@ -35,6 +35,24 @@ class Resultado extends StatelessWidget {
             ),
           ),
         ),
+        Text(
+          'Voce fez $pontuacao pontos',
+          style: const TextStyle(
+            fontSize: 20
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green
+            ),
+            onPressed: reiniciarQuiz, 
+            child: const Text(
+              'Reiniciar',
+            ),
+          ),
+        ),
       ],
     );
   }

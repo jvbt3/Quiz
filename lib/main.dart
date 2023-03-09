@@ -69,7 +69,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.green,
+          centerTitle: true,
           title: const Text("Perguntados"),
+          
         ),
         body: temPerguntaSelecionada
             ? Questionario(
