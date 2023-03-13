@@ -9,10 +9,11 @@ class Questionario extends StatelessWidget {
   final void Function(int) responder;
 
   // ignore: prefer_const_constructors_in_immutables
-  Questionario({super.key,
-    required this.perguntaSelecionada,
-    required this.perguntas,
-    required this.responder});
+  Questionario(
+      {super.key,
+      required this.perguntaSelecionada,
+      required this.perguntas,
+      required this.responder});
 
   bool get temPerguntaSelecionada {
     return perguntaSelecionada < perguntas.length;
@@ -21,15 +22,19 @@ class Questionario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, Object>> respostas = temPerguntaSelecionada
-        ? perguntas[perguntaSelecionada]['resposta'] as List<Map<String, Object>>
+        ? perguntas[perguntaSelecionada]['resposta']
+            as List<Map<String, Object>>
         : [];
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Questao(perguntas[perguntaSelecionada]['texto'] as String),
-        ...respostas.map((resp) {
-          return Resposta(
-            resp['texto'].toString(), 
-              () => responder(int.parse(resp['pontuacao'].toString()),
+        ...respostas.map(
+          (resp) {
+            return Resposta(
+              resp['texto'].toString(),
+              () => responder(
+                int.parse(resp['pontuacao'].toString()),
               ),
             );
           },
