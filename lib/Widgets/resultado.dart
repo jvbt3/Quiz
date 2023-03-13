@@ -31,7 +31,7 @@ class Resultado extends StatelessWidget {
           child: Text(
             fraseResultado,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 19,
             ),
           ),
         ),
